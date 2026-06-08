@@ -66,4 +66,56 @@ public class Main {
     }
 
   
+    private static void displayAllStudents() {
+        if (studentList.isEmpty()) {
+            System.out.println("No student records found.");
+            return;
+        }
+        System.out.println("\n--- Student Records ---");
+        for (Student student : studentList) {
+            student.displayStudentDetails();
+        }
+    }
+
    
+    private static void searchStudentById() {
+        if (studentList.isEmpty()) {
+            System.out.println("No student records available to search.");
+            return;
+        }
+        System.out.print("Enter Student ID to search: ");
+        String searchId = scanner.nextLine().trim();
+        boolean found = false;
+
+        for (Student student : studentList) {
+            if (student.getStudentId().equalsIgnoreCase(searchId)) {
+                System.out.println("\nStudent Found:");
+                student.displayStudentDetails();
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Student with ID " + searchId + " not found.");
+        }
+    }
+
+  
+    private static void calculateAverage() {
+        if (studentList.isEmpty()) {
+            System.out.println("No student records available to calculate average.");
+            return;
+        }
+        double total = 0;
+        for (Student student : studentList) {
+            total += student.getMarks();
+        }
+        double average = total / studentList.size();
+        System.out.printf("\nTotal Students: %d | Average Mark: %.2f\n", studentList.size(), average);
+    }
+}
+
+
+
+
+
